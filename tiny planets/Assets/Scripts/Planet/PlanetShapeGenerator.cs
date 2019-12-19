@@ -4,8 +4,9 @@ public class PlanetShapeGenerator
 {
     private PlanetShapeSettings settings;
     private INoiseFilter[] noiseFilters;
+    public PlanetMinMax elevationMinMax;
 
-    public PlanetShapeGenerator(PlanetShapeSettings settings)
+    public void UpdateSettings(PlanetShapeSettings settings)
     {
         this.settings = settings;
         noiseFilters = new INoiseFilter[settings.noiseLayers.Length];
@@ -13,9 +14,11 @@ public class PlanetShapeGenerator
         {
             noiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings.noiseLayers[i].noiseSettings);
         }
+
+        elevationMinMax = new PlanetMinMax();
     }
 
-    public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere)
+    public float CalculateUnscaledElevation(Vector3 pointOnUnitSphere)
     {
         float firstLayerValue = 0.0f;
         float elevation = 0.0f;
@@ -38,6 +41,15 @@ public class PlanetShapeGenerator
             }
         }
 
-        return pointOnUnitSphere * settings.planetRadius * (1 + elevation);
+        // elevation = 1 + elevation;
+        elevationMinMax.AddValue(elevation);
+        return  elevation;
+    }
+
+    public float GetScaledElevation(float unscaledElevation)
+    {
+        float elevation = Mathf.Max(0.0f, unscaledElevation);
+        elevation = settings.planetRadius * (1.0f + elevation);
+        return elevation;
     }
 }

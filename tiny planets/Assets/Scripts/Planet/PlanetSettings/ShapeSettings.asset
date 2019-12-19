@@ -12,16 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064dc62a9809e438fbc15a1afa2e75b7, type: 3}
   m_Name: ShapeSettings
   m_EditorClassIdentifier: 
-  planetRadius: 5
+  planetRadius: 10
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 0
       simpleNoiseSettings:
+        strength: 0.05
+        baseRoughness: 1.4
+        roughness: 2
+        minValue: 1.05
+        numLayers: 4
+        persistance: 0.5
+        center: {x: 0, y: 0, z: 0}
+      ridgedNoiseSettings:
         strength: 1
         baseRoughness: 1
         roughness: 2
+        minValue: 0
+        numLayers: 1
+        persistance: 0.5
+        center: {x: 0, y: 0, z: 0}
+        weightMultiplier: 0.8
+  - enabled: 1
+    useFirstLayerAsMask: 1
+    noiseSettings:
+      filterType: 0
+      simpleNoiseSettings:
+        strength: 2.38
+        baseRoughness: 2.9
+        roughness: 2.29
         minValue: 0
         numLayers: 1
         persistance: 0.5
@@ -35,8 +56,8 @@ MonoBehaviour:
         persistance: 0.5
         center: {x: 0, y: 0, z: 0}
         weightMultiplier: 0.8
-  - enabled: 0
-    useFirstLayerAsMask: 1
+  - enabled: 1
+    useFirstLayerAsMask: 0
     noiseSettings:
       filterType: 1
       simpleNoiseSettings:
@@ -48,31 +69,10 @@ MonoBehaviour:
         persistance: 0.5
         center: {x: 0, y: 0, z: 0}
       ridgedNoiseSettings:
-        strength: 1
+        strength: 0.15
         baseRoughness: 1
         roughness: 2
-        minValue: 0
-        numLayers: 1
-        persistance: 0.5
-        center: {x: 0, y: 0, z: 0}
-        weightMultiplier: 0.8
-  - enabled: 0
-    useFirstLayerAsMask: 1
-    noiseSettings:
-      filterType: 1
-      simpleNoiseSettings:
-        strength: 1
-        baseRoughness: 1
-        roughness: 2
-        minValue: 0
-        numLayers: 1
-        persistance: 0.5
-        center: {x: 0, y: 0, z: 0}
-      ridgedNoiseSettings:
-        strength: 1
-        baseRoughness: 1
-        roughness: 2
-        minValue: 0
+        minValue: 0.78
         numLayers: 1
         persistance: 0.5
         center: {x: 0, y: 0, z: 0}
